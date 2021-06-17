@@ -6,6 +6,8 @@ L'objectif de ce TP est de créer un script qui va installer une application web
 
 Ce script comportera des commandes AWS-CLI pour créer l'ensemble des ressources nécessaires et déployer le site.
 
+![architechture_aws](architechture_aws.PNG)
+
 ## Création des ressources
 * Mettre dans le scripts les commandes AWS CLI pour faire les actions suivantes : 
   * Création du VPC
