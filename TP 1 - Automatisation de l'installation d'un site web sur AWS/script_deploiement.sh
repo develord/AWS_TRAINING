@@ -1,18 +1,20 @@
 #!/bin/bash
-
-yum update -y
-amazon-linux-extras enable php7.4
-yum install -y httpd
-yum install -y mariadb-server
-yum install -y php-cli php-pdo php-fpm php-json php-mysqlnd
-sudo service mariadb start
-sudo service httpd start
-mysqladmin -u root create blog
-
-cd /var/www/html
-sudo wget http://wordpress.org/latest.tar.gz
-sudo tar -xzvf latest.tar.gz
-sudo mv wordpress/* .
-sudo rm -rf wordpress
-
-exit
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce
+sudo docker run hello-world
+# Linux post-install
+sudo groupadd docker
+sudo usermod -aG docker $USER
+# you need restart to make docker runnable without sudo
+sudo systemctl enable docker
